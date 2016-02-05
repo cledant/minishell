@@ -1,0 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin_char2_with_space.c                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cledant <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/25 11:17:21 by cledant           #+#    #+#             */
+/*   Updated: 2016/01/31 14:07:50 by cledant          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_convert_char2_to_char(char **str)
+{
+	char	*result;
+	char	*tmp;
+	char	*tmp2;
+
+	tmp = NULL;
+	tmp2 = NULL;
+	result = NULL;
+	if ((result = ft_strdup(*str)) == NULL)
+		return (NULL);
+	str++;
+	while (*str != '\0')
+	{
+		if ((tmp = ft_strjoin("\n", *str)) == NULL)
+		{
+			ft_strdel(&result);
+			return (NULL);
+		}
+		if ((tmp2 = ft_strjoin(result, tmp)) == NULL)
+		{
+			ft_strdel(&result);
+			ft_strdel(&tmp);
+			return (NULL);
+		}
+		ft_strdel(&result);
+		if ((result = ft_strdup(tmp2)) == NULL)
+		{
+			ft_strdel(&tmp);
+			ft_strdel(&tmp2);
+			return (NULL);
+		}
+		ft_strdel(&tmp);
+		ft_strdel(&tmp2);
+		str++;
+	}
+	return (result);
+}

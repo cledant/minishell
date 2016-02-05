@@ -1,0 +1,81 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_quote.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cledant <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/30 21:13:23 by cledant           #+#    #+#             */
+/*   Updated: 2016/01/30 21:30:01 by cledant          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+int		ft_check_quote(char *line)
+{
+	int		count;
+	int		has_quote;
+	int		check_it;
+
+	count = 0;
+	has_quote = 0;
+	check_it = 0
+	while (*line != '\0')
+	{
+		if (check_it == 0 || check_it == 1)
+		{
+			if (ft_strncmp(line, "\"") == 0)
+			{
+				if (count == 0)
+				{
+					count++;
+					check_it = 1;
+				}
+				else
+				{
+					count = 0;
+					check_it = 0;
+				}
+				has_quote = 1;
+			}
+		}
+		if (check_it == 0 || check_it == 2)
+		{
+			if (ft_strncmp(line, "\'") == 0)
+			{
+				if (count == 0)
+				{
+					count++;
+					check_it = 2;
+				}
+				else
+				{
+					count = 0;
+					check_it = 0;
+				}
+				has_quote = 1;
+			}
+		}
+		if (check_it == 0 || check_it == 3)
+		{
+			if (ft_strncmp(line, "\`") == 0)
+			{
+				if (count == 0)
+				{
+					count++;
+					check_it = 3;
+				}
+				else
+				{
+					count = 0;
+					check_it = 0;
+				}
+				has_quote = 1;
+			}
+		}
+		line++;
+	}
+	if (count != 0)
+		return (-1);
+	else
+		return (has_quote);
+}

@@ -1,0 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substitute_env.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cledant <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/30 21:34:21 by cledant           #+#    #+#             */
+/*   Updated: 2016/01/31 11:50:23 by cledant          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+int		ft_substitute_env(char **argv, char **i_env, char **env, char *line)
+{
+	char	*tmp;
+	char	*found;
+
+	found = NULL;
+	tmp = NULL;
+	while (*argv != '\0')
+	{
+		if (ft_strncmp(*argv, "~", 1) == 0)
+		{
+			if (ft_search_in_env(i_env, "HOME") == NULL)
+			{
+				if (ft_search_in_env(env, "HOME") == NULL)
+				{
+					ft_putendl_fd("minishell : no home set");
+					return (-2);
+				}
+				else
+				{
+					*argv+;
+					if ((tmp = ft_strjoin())	
+				}
+			}
+		}
+	}
+}

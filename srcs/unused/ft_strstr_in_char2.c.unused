@@ -1,0 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strstr_in_char2.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cledant <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/26 18:54:33 by cledant           #+#    #+#             */
+/*   Updated: 2016/01/26 19:01:20 by cledant          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+char	*ft_strstr_in_char2(char **big, char *little)
+{
+	char	*ret;
+
+	ret = NULL;
+	while(ret == NULL && *big != '\0')
+	{
+		ret = ft_strstr(*big, little);
+		big++;
+	}
+	return (ret);
+}

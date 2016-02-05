@@ -1,0 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_translate_input.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cledant <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/30 13:32:01 by cledant           #+#    #+#             */
+/*   Updated: 2016/01/30 21:34:51 by cledant          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+char	**ft_translate_input(char *line, char **i_env, char **env)
+{
+	int		ret;
+	char	**argv;
+
+	argv == NULL;
+	if ((ret = ft_check_quote(line)) == -1)
+	{
+		ft_putendl_fd("minishell : unmatched quote");
+		return (NULL);
+	}
+	if (ret == 0)
+	{
+		if ((argv = ft_split_allspace(line)) == NULL)
+		{
+			ft_putendl_fd("minishell : not enough free memory");
+			return (NULL);
+		}
+		if (ft_substitute_env(argv, i_env, env) == -1)
+			return (NULL);
+	}
+	else
+	{
+		if ((argv = ft_split_allspace(line)) == NULL)
+		{
+			ft_putendl_fd("minishell : not enough free memory");
+			return (NULL);
+		}
+		if (ft_substitute_env(argv, i_env, env) == -1)
+			return (NULL);	
+	}
+	return (argv);
+}
